@@ -1,8 +1,30 @@
-SDL Perl Game Contest!
-======================
+NAME
+    Games::Snake - A simple version of the classic Snake video game
 
-This repository contains games I made for the SDL Perl Game Contest.
+SYNOPSIS
+        perl snake.pl
 
-For more information about the contest see:
+    Or for 2-player:
 
-    http://onionstand.blogspot.com/2011/02/sdl-perl-game-contest.html
+        perl snake2p.pl
+
+    By default, the game will connect to a server to determine the
+    IP address and port of the other player.  If you are using public
+    IP address, or both players are on the same network, you can specify
+    the remote IP address and port number directly.
+
+    Options:
+        --laddr     Local IP address
+        --lport     Local port number
+        --raddr     Remote player IP address
+        --rport     Remote player port number
+        --saddr     Server IP address
+        --sport     Server port number
+
+PREREQUISITES
+    * SDL
+    * Mouse
+    * POE
+    * POE::Wheel::UDP;
+    * JSON
+    * Net::Address::IP::Local
