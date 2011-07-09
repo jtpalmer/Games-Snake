@@ -1,8 +1,9 @@
-SDL Perl Game Contest!
-======================
+NAME
+    Games::Snake - A simple version of the classic Snake video game
 
-This repository contains games I made for the SDL Perl Game Contest.
+SYNOPSIS
+    perl snake.pl
 
-For more information about the contest see:
-
-    http://onionstand.blogspot.com/2011/02/sdl-perl-game-contest.html
+PREREQUISITES
+    * SDL
+    * Mouse
