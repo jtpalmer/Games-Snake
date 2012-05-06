@@ -166,3 +166,11 @@ no Mouse;
 
 1;
 
+=pod
+
+=head1 SYNOPSIS
+
+    Games::Snake->new()->run();
+
+=cut
+
