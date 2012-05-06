@@ -3,21 +3,14 @@ use Mouse;
 use SDL;
 use SDL::Event;
 use SDLx::App;
-use Games::Snake::Controller;
 use Games::Snake::Player;
 use Games::Snake::Level;
 
 has app => (
     is      => 'ro',
     isa     => 'SDLx::App',
-    builder => '_build_app',
-);
-
-has c => (
-    is      => 'ro',
-    isa     => 'Games::Snake::Controller',
     lazy    => 1,
-    builder => '_build_controller',
+    builder => '_build_app',
     handles => [qw( run )],
 );
 
@@ -32,11 +25,6 @@ has player => (
     isa     => 'Games::Snake::Player',
     lazy    => 1,
     builder => '_build_player',
-);
-
-has player2 => (
-    is  => 'rw',
-    isa => 'Games::Snake::RemotePlayer',
 );
 
 has level => (
@@ -58,11 +46,6 @@ sub _build_app {
         title => 'Snake',
         w     => 800,
         h     => 600,
-    );
-}
-
-sub _build_controller {
-    return Games::Snake::Controller->new(
         eoq   => 1,
         dt    => 0.05,
         delay => 20,
@@ -95,16 +78,12 @@ sub _build_apple {
 
     my $level  = $self->level;
     my $player = $self->player;
-    my $p2     = $self->player2;
 
     my $coord;
 
     do {
-        do {
-            $coord = [ int( rand( $level->w ) ), int( rand( $level->h ) ) ];
-            } while ( $player->is_segment($coord)
-            || $level->is_wall($coord) );
-    } while ( defined $p2 && $p2->is_segment($coord) );
+        $coord = [ int( rand( $level->w ) ), int( rand( $level->h ) ) ];
+    } while ( $player->is_segment($coord) || $level->is_wall($coord) );
 
     return $coord;
 }
@@ -112,14 +91,14 @@ sub _build_apple {
 sub BUILD {
     my ($self) = @_;
 
-    my $c = $self->c;
-    $c->add_event_handler( sub { $self->handle_event(@_) } );
-    $c->add_move_handler( sub  { $self->handle_move(@_) } );
-    $c->add_show_handler( sub  { $self->handle_show(@_) } );
+    my $app = $self->app;
+    $app->add_event_handler( sub { $self->handle_event(@_) } );
+    $app->add_move_handler( sub  { $self->handle_move(@_) } );
+    $app->add_show_handler( sub  { $self->handle_show(@_) } );
 }
 
 sub handle_event {
-    my ( $self, $event, $c ) = @_;
+    my ( $self, $event, $app ) = @_;
 
     my $player = $self->player;
 
@@ -137,18 +116,14 @@ sub handle_event {
 }
 
 sub handle_move {
-    my ( $self, $step, $c, $t ) = @_;
+    my ( $self, $step, $app, $t ) = @_;
 
     my $level  = $self->level;
     my $player = $self->player;
-    my $p2     = $self->player2;
 
     $player->move($t);
 
     if ( $player->hit_self() || $level->is_wall( $player->head ) ) {
-        $player->alive(0);
-    }
-    elsif ( defined $p2 && $p2->is_segment( $player->head ) ) {
         $player->alive(0);
     }
     elsif ($player->head->[0] == $self->apple->[0]
@@ -161,9 +136,8 @@ sub handle_move {
 }
 
 sub handle_show {
-    my ( $self, $delta, $c ) = @_;
+    my ( $self, $delta, $app ) = @_;
 
-    my $app = $self->app;
     $app->draw_rect( [ 0, 0, $app->w, $app->h ], 0x000000FF );
 
     my $size = $self->size;
@@ -172,7 +146,6 @@ sub handle_show {
         0xC20006FF );
 
     $self->player->draw($app);
-    $self->player2->draw($app) if defined $self->player2;
     $self->level->draw($app);
 
     if ( !$self->player->alive ) {
