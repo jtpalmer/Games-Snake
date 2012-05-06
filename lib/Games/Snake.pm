@@ -1,4 +1,6 @@
 package Games::Snake;
+use strict;
+use warnings;
 use Mouse;
 use SDL;
 use SDL::Event;
@@ -163,3 +165,4 @@ sub handle_show {
 no Mouse;
 
 1;
+

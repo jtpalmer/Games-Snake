@@ -1,4 +1,6 @@
 package Games::Snake::Level;
+use strict;
+use warnings;
 use Mouse;
 
 # ABSTRACT: Level object
@@ -69,3 +71,4 @@ sub draw {
 no Mouse;
 
 1;
+

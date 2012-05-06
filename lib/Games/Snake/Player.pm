@@ -1,4 +1,6 @@
 package Games::Snake::Player;
+use strict;
+use warnings;
 use Mouse;
 
 # ABSTRACT: Player object
@@ -116,3 +118,4 @@ sub draw {
 no Mouse;
 
 1;
+
