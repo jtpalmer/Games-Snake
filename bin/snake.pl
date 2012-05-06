@@ -1,4 +1,6 @@
 #!perl
+package    # Hide from PAUSE
+    snake;
 use strict;
 use warnings;
 use FindBin qw( $Bin );
