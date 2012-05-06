@@ -1,8 +1,9 @@
-#!/usr/bin/env perl
+#!perl
 use strict;
 use warnings;
 use FindBin qw( $Bin );
-use lib "$Bin/lib";
+use lib "$Bin/../lib";
 use Games::Snake;
 
 Games::Snake->new()->run();
+
