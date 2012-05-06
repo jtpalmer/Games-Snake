@@ -1,6 +1,8 @@
 package Games::Snake::Level;
 use Mouse;
 
+# ABSTRACT: Level object
+
 has [qw( w h )] => (
     is       => 'ro',
     isa      => 'Int',

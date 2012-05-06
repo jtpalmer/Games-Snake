@@ -6,6 +6,8 @@ use SDLx::App;
 use Games::Snake::Player;
 use Games::Snake::Level;
 
+# ABSTRACT: Snake game
+
 has app => (
     is      => 'ro',
     isa     => 'SDLx::App',

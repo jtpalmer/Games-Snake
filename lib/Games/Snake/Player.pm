@@ -1,6 +1,8 @@
 package Games::Snake::Player;
 use Mouse;
 
+# ABSTRACT: Player object
+
 has segments => (
     is      => 'ro',
     isa     => 'ArrayRef',
