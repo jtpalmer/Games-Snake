@@ -1,11 +1,9 @@
 #!perl
-package    # Hide from PAUSE
-    snake;
 use strict;
 use warnings;
 use Games::Snake;
 
-# ABSTRACT: Snake executable
+# PODNAME: snake.pl
 
 Games::Snake->new()->run();
 
