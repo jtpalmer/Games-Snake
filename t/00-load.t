@@ -4,14 +4,23 @@ use warnings;
 use Test::More;
 
 BEGIN {
-    use_ok 'Games::Snake' or BAIL_OUT('Failed to load Games::Snake!');
-    use_ok 'Games::Snake::Level'
-        or BAIL_OUT('Failed to load Games::Snake::Level!');
-    use_ok 'Games::Snake::Player'
-        or BAIL_OUT('Failed to load Games::Snake::Player!');
+    my @modules = qw(
+        Games::Snake
+        Games::Snake::Level
+        Games::Snake::Player
+    );
+
+    for my $module (@modules) {
+        use_ok($module) or BAIL_OUT("Failed to load $module");
+    }
 }
 
-diag "Testing Games::Snake $Games::Snake::VERSION, Perl $], $^X";
+diag(
+    sprintf(
+        'Testing Games::Snake %f, Perl %f, %s',
+        $Games::Snake::VERSION, $], $^X
+    )
+);
 
 done_testing();
 
