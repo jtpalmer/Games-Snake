@@ -2,7 +2,7 @@ package Games::Snake;
 use strict;
 use warnings;
 use Mouse;
-use SDL;
+use SDL 2.500;
 use SDL::Event;
 use SDLx::App;
 use Games::Snake::Player;
