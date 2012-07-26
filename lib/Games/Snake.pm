@@ -166,11 +166,29 @@ sub handle_show {
 
 __END__
 
-=pod
+=for Pod::Coverage BUILD handle_event handle_move handle_show size
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
-    Games::Snake->new()->run();
+Games::Snake is a clone of the classic Snake game.
+
+This game was originally created for The SDL Perl Game Contest!
+
+See L<snake.pl> for instructions to play the game.
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<snake.pl>
+
+=item * L<SDL>
+
+=item * L<The SDL Perl Game Contest!|http://onionstand.blogspot.com/2011/02/sdl-perl-game-contest.html>
+
+=item * L<Snake|http://en.wikipedia.org/wiki/Snake_%28video_game%29>
+
+=back
 
 =cut
 

@@ -81,3 +81,15 @@ sub draw {
 
 __END__
 
+=for Pod::Coverage color draw h is_wall size w
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<Games::Snake>
+
+=back
+
+=cut
+

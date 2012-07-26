@@ -122,3 +122,15 @@ sub draw {
 
 __END__
 
+=for Pod::Coverage body color draw head hit_self is_segment move segments size
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<Games::Snake>
+
+=back
+
+=cut
+
