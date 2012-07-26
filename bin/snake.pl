@@ -1,4 +1,8 @@
 #!perl
+
+# PODNAME: snake.pl
+# ABSTRACT: Play the game
+
 use strict;
 use warnings;
 
@@ -9,9 +13,6 @@ BEGIN {
 }
 
 use Games::Snake;
-
-# PODNAME: snake.pl
-# ABSTRACT: Play the game
 
 Games::Snake->new()->run();
 
