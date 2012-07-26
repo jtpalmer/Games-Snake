@@ -1,18 +1,20 @@
 package Games::Snake;
+
+# ABSTRACT: Snake game
+
 use strict;
 use warnings;
-use Mouse;
+use Moo;
+use MooX::Types::MooseLike::Base qw( Int ArrayRef );
+use Sub::Quote qw(quote_sub);
 use SDL 2.500;
 use SDL::Event;
 use SDLx::App;
 use Games::Snake::Player;
 use Games::Snake::Level;
 
-# ABSTRACT: Snake game
-
 has app => (
     is      => 'ro',
-    isa     => 'SDLx::App',
     lazy    => 1,
     builder => '_build_app',
     handles => [qw( run )],
@@ -20,27 +22,25 @@ has app => (
 
 has size => (
     is      => 'ro',
-    isa     => 'Int',
-    default => 10,
+    isa     => Int,
+    default => quote_sub q{ 10 },
 );
 
 has player => (
     is      => 'rw',
-    isa     => 'Games::Snake::Player',
     lazy    => 1,
     builder => '_build_player',
 );
 
 has level => (
     is      => 'ro',
-    isa     => 'Games::Snake::Level',
     lazy    => 1,
     builder => '_build_level',
 );
 
 has apple => (
     is      => 'rw',
-    isa     => 'ArrayRef',
+    isa     => ArrayRef,
     lazy    => 1,
     builder => '_build_apple',
 );
@@ -162,9 +162,9 @@ sub handle_show {
     $app->update();
 }
 
-no Mouse;
-
 1;
+
+__END__
 
 =pod
 

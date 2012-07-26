@@ -1,56 +1,59 @@
 package Games::Snake::Player;
-use strict;
-use warnings;
-use Mouse;
 
 # ABSTRACT: Player object
 
+use strict;
+use warnings;
+use Moo;
+use MooX::Types::MooseLike::Base qw( ArrayRef Num Bool Int );
+use Sub::Quote qw(quote_sub);
+
 has segments => (
     is      => 'ro',
-    isa     => 'ArrayRef',
-    default => sub { [] },
+    isa     => ArrayRef,
+    default => quote_sub q{ [] },
 );
 
 has speed => (
     is      => 'rw',
-    isa     => 'Num',
-    default => 0.1,
+    isa     => Num,
+    default => quote_sub q{ 0.1 },
 );
 
 has _move_time => (
     is      => 'rw',
-    isa     => 'Num',
-    default => 0,
+    isa     => Num,
+    default => quote_sub q{ 0 },
 );
 
 has direction => (
     is      => 'rw',
-    isa     => 'ArrayRef',
-    default => sub { [] },
+    isa     => ArrayRef,
+    default => quote_sub q{ [] },
 );
 
 has alive => (
     is      => 'rw',
-    isa     => 'Bool',
-    default => 1,
+    isa     => Bool,
+    default => quote_sub q{ 1 },
 );
 
 has growing => (
     is      => 'rw',
-    isa     => 'Int',
-    default => 0,
+    isa     => Int,
+    default => quote_sub q{ 0 },
 );
 
 has size => (
     is       => 'ro',
-    isa      => 'Int',
-    required => 1,
+    isa      => Int,
+    required => quote_sub q{ 1 },
 );
 
 has color => (
     is       => 'ro',
-    isa      => 'Int',
-    required => 1,
+    isa      => Int,
+    required => quote_sub q{ 1 },
 );
 
 sub head {
@@ -115,7 +118,7 @@ sub draw {
     }
 }
 
-no Mouse;
-
 1;
+
+__END__
 

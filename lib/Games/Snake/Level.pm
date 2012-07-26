@@ -1,33 +1,42 @@
 package Games::Snake::Level;
-use strict;
-use warnings;
-use Mouse;
 
 # ABSTRACT: Level object
 
-has [qw( w h )] => (
+use strict;
+use warnings;
+use Moo;
+use MooX::Types::MooseLike::Base qw( Int ArrayRef );
+use Sub::Quote qw(quote_sub);
+
+has w => (
     is       => 'ro',
-    isa      => 'Int',
+    isa      => Int,
+    required => 1,
+);
+
+has h => (
+    is       => 'ro',
+    isa      => Int,
     required => 1,
 );
 
 has walls => (
     is      => 'ro',
-    isa     => 'ArrayRef',
+    isa     => ArrayRef,
     lazy    => 1,
     builder => '_build_walls',
 );
 
 has size => (
     is       => 'ro',
-    isa      => 'Int',
+    isa      => Int,
     required => 1,
 );
 
 has color => (
     is      => 'ro',
-    isa     => 'Int',
-    default => 0x0000FFFF,
+    isa     => Int,
+    default => quote_sub q{ 0x0000FFFF },
 );
 
 sub _build_walls {
@@ -68,7 +77,7 @@ sub draw {
     }
 }
 
-no Mouse;
-
 1;
+
+__END__
 
