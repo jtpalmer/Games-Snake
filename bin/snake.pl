@@ -30,7 +30,7 @@ Start the game from the command line:
 
 =head1 DESCRIPTION
 
-This script starts the game.  It will open a 1024x768 window (plus the
+This script starts the game.  It will open a 800x600 window (plus the
 size of the window frame).  Use the arrow keys to control the snake.
 Close the window to end the game.
 
